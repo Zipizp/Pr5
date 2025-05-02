@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Максимальний підмасив</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { padding: 8px; font-size: 16px; margin-top: 10px; }
+    #result { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+<h2>Знайти максимальну суму підмасиву</h2>
+<p>Введіть числа через кому (наприклад: <code>1, -2, 3, 4, -9, 6</code>)</p>
+<input type="text" id="arrayInput" placeholder="Введіть масив чисел">
+<br>
+<button onclick="handleMaxSubSum()">Знайти суму</button>
+
+<div id="result"></div>
+
+<script>
+  function getMaxSubSum(arr) {
+    let maxSum = 0;
+    let currentSum = 0;
+
+    for (let num of arr) {
+      currentSum += num;
+      if (currentSum > maxSum) maxSum = currentSum;
+      if (currentSum < 0) currentSum = 0;
+    }
+
+    return maxSum;
+  }
+
+  function handleMaxSubSum() {
+    const input = document.getElementById("arrayInput").value;
+    const arr = input.split(",").map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+    
+    const result = getMaxSubSum(arr);
+    document.getElementById("result").innerHTML = `Максимальна сума підмасиву: <strong>${result}</strong>`;
+  }
+</script>
+
+</body>
+</html>

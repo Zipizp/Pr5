@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Сума введених чисел</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+<h2>Сума введених чисел</h2>
+<button onclick="sumInput()">Ввести числа</button>
+<div id="result"></div>
+
+<script>
+  function sumInput() {
+    const numbers = [];
+
+    while (true) {
+      let input = prompt("Введіть число:");
+
+      if (input === null || input.trim() === "" || isNaN(input)) {
+        break;
+      }
+
+      numbers.push(+input); // перетворюємо на число і додаємо
+    }
+
+    const sum = numbers.reduce((acc, num) => acc + num, 0);
+
+    document.getElementById("result").innerHTML =
+      `Введені числа: ${numbers.join(", ")}<br>Сума: ${sum}`;
+  }
+</script>
+
+</body>
+</html>
